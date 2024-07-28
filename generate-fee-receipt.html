@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Fee Receipt - Impact Knowledge Institute</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Impact Knowledge Institute</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin-dashboard.html">Dashboard</a></li>
+                <li><a href="/admin-login.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Generate Fee Receipt</h2>
+        <form action="/generate-fee-receipt" method="POST">
+            <label for="student">Select Student:</label>
+            <select name="studentId" id="student" required>
+                <option value="">Select a student</option>
+                <!-- Options will be populated by JavaScript -->
+            </select><br><br>
+            <label for="amount">Amount:</label>
+            <input type="number" name="amount" id="amount" required><br><br>
+            <label for="paymentDate">Payment Date:</label>
+            <input type="date" name="paymentDate" id="paymentDate" required><br><br>
+            <button type="submit">Generate Receipt</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Impact Knowledge Institute. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/api/students')
+                .then(response => response.json())
+                .then(data => {
+                    const studentSelect = document.getElementById('student');
+                    data.forEach(student => {
+                        const option = document.createElement('option');
+                        option.value = student.id;
+                        option.textContent = `${student.firstName} ${student.lastName}`;
+                        studentSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching students:', error));
+        });
+    </script>
+</body>
+</html>

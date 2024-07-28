@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student - Impact Knowledge Institute</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Impact Knowledge Institute</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin-dashboard.html">Admin Dashboard</a></li>
+                <li><a href="/enroll-student.html">Enroll Student</a></li>
+                <li><a href="/enrolled-students.html">View Enrolled Students</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Edit Student</h2>
+        <form id="edit-student-form" action="/edit-student" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" id="student-id">
+            <!-- Include other input fields here similar to enroll-student.html -->
+            <!-- Example fields -->
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" id="firstName" required>
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastName" id="lastName" required>
+            <label for="photo">Photo:</label>
+            <input type="file" name="photo" id="photo">
+            <button type="submit">Update Student</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Impact Knowledge Institute. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const studentId = urlParams.get('id');
+            fetch(`/api/students`)
+                .then(response => response.json())
+                .then(data => {
+                    const student = data.find(s => s.id === parseInt(studentId));
+                    if (student) {
+                        document.getElementById('student-id').value = student.id;
+                        document.getElementById('firstName').value = student.firstName;
+                        document.getElementById('lastName').value = student.lastName;
+                        // Set other input fields similarly
+                    }
+                });
+            document.getElementById('edit-student-form').action = `/edit-student/${studentId}`;
+        });
+    </script>
+</body>
+</html>

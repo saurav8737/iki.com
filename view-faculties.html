@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Faculties - Impact Knowledge Institute</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/api/faculties')
+                .then(response => response.json())
+                .then(faculties => {
+                    const facultyList = document.getElementById('faculty-list');
+                    faculties.forEach(faculty => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            ${faculty.firstName} ${faculty.lastName} - ${faculty.facultyOf} - ${faculty.joiningDate}
+                            ${faculty.photo ? `<img src="/uploads/${faculty.photo}" alt="Faculty Photo" style="width: 50px; height: 50px; object-fit: cover; margin-left: 10px;">` : ''}
+                        `;
+                        facultyList.appendChild(listItem);
+                    });
+                });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Impact Knowledge Institute</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Administration</a>
+                    <div class="dropdown-content">
+                        <a href="/admin-login.html">Admin Login</a>
+                    </div>
+                </li>
+                <li><a href="/academics.html">Academics</a></li>
+                <li><a href="/gallery.html">Gallery</a></li>
+                <li><a href="/examination.html">Examination</a></li>
+                <li class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Enrolled Faculties</h2>
+        <ul id="faculty-list"></ul>
+    </main>
+    <footer>
+        <p>&copy; 2024 Impact Knowledge Institute. All rights reserved.</p>
+        <p>Designed by: SAURAV KUMAR</p>
+    </footer>
+</body>
+</html>

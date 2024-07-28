@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Faculty - Impact Knowledge Institute</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to fetch city based on area pin code
+        function fetchCity() {
+            const pinCode = document.getElementById('pinCode').value;
+            if (pinCode.length === 6) { // assuming a valid pin code length is 6
+                // Replace with actual API call if available
+                fetch(`/api/getCity?pinCode=${pinCode}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.city) {
+                            document.getElementById('city').value = data.city;
+                        } else {
+                            alert('City not found for the given pin code');
+                        }
+                    });
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Impact Knowledge Institute</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Administration</a>
+                    <div class="dropdown-content">
+                        <a href="/admin-login.html">Admin Login</a>
+                    </div>
+                </li>
+                <li><a href="/academics.html">Academics</a></li>
+                <li><a href="/gallery.html">Gallery</a></li>
+                <li><a href="/examination.html">Examination</a></li>
+                <li class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Enroll Faculty</h2>
+        <form action="/enroll-faculty" method="post" enctype="multipart/form-data">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required><br><br>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required><br><br>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required><br><br>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br><br>
+            <label for="facultyOf">Faculty of:</label>
+            <select id="facultyOf" name="facultyOf" required>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Science">Science</option>
+                <option value="English">English</option>
+                <option value="History">History</option>
+                <option value="Geography">Geography</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Economics">Economics</option>
+                <option value="Moral Science">Moral Science</option>
+                <option value="Polity">Polity</option>
+
+                <!-- Add more subjects as needed -->
+            </select><br><br>
+            <label for="fatherName">Father's Name:</label>
+            <input type="text" id="fatherName" name="fatherName" required><br><br>
+            <label for="motherName">Mother's Name:</label>
+            <input type="text" id="motherName" name="motherName" required><br><br>
+            <label for="mobileNo">Mobile No:</label>
+            <input type="text" id="mobileNo" name="mobileNo" required><br><br>
+            <label for="joiningDate">Joining Date:</label>
+            <input type="date" id="joiningDate" name="joiningDate" required><br><br>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required><br><br>
+            <label for="pinCode">Area Pin Code:</label>
+            <input type="text" id="pinCode" name="pinCode" required onblur="fetchCity()"><br><br>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" readonly required><br><br>
+            <label for="photo">Passport Size Photo:</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+            <input type="submit" value="Enroll">
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Impact Knowledge Institute. All rights reserved.</p>
+        <p>Designed by: SAURAV KUMAR</p>
+    </footer>
+</body>
+</html>

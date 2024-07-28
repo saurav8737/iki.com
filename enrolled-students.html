@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrolled Students - Impact Knowledge Institute</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Impact Knowledge Institute</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin-dashboard.html">Admin Dashboard</a></li>
+                <li><a href="/enroll-student.html">Enroll Student</a></li>
+                <li><a href="/enrolled-students.html">View Enrolled Students</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Enrolled Students</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>School Name</th>
+                    <th>Tuition Fee</th>
+                    <th>Mobile No</th>
+                    <th>Admission Date</th>
+                    <th>Class</th>
+                    <th>Address</th>
+                    <th>Area Pin Code</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Photo</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="student-list">
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2024 Impact Knowledge Institute. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/api/students')
+                .then(response => response.json())
+                .then(data => {
+                    const studentList = document.getElementById('student-list');
+                    data.forEach(student => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${student.firstName}</td>
+                            <td>${student.lastName}</td>
+                            <td>${student.dob}</td>
+                            <td>${student.gender}</td>
+                            <td>${student.fatherName}</td>
+                            <td>${student.motherName}</td>
+                            <td>${student.schoolName}</td>
+                            <td>${student.tuitionFee}</td>
+                            <td>${student.mobileNo}</td>
+                            <td>${student.admissionDate}</td>
+                            <td>${student.currentClass}</td>
+                            <td>${student.address}</td>
+                            <td>${student.areaPinCode}</td>
+                            <td>${student.city}</td>
+                            <td>${student.state}</td>
+                            <td>${student.photo ? `<img src="/uploads/${student.photo}" alt="Student Photo" width="50">` : 'N/A'}</td>
+                            <td>
+                                <button onclick="editStudent(${student.id})">Edit</button>
+                                <button onclick="deleteStudent(${student.id})">Delete</button>
+                            </td>
+                        `;
+                        studentList.appendChild(row);
+                    });
+                });
+        });
+
+        function editStudent(id) {
+            // Implement edit functionality
+            const student = students.find(s => s.id === id);
+            if (student) {
+                const form = document.createElement('form');
+                form.action = `/edit-student/${id}`;
+                form.method = 'POST';
+                form.innerHTML = `
+                    <input type="text" name="firstName" value="${student.firstName}" required>
+                    <input type="text" name="lastName" value="${student.lastName}" required>
+                    <input type="date" name="dob" value="${student.dob}" required>
+                    <select name="gender">
+                        <option value="Male" ${student.gender === 'Male' ? 'selected' : ''}>Male</option>
+                        <option value="Female" ${student.gender === 'Female' ? 'selected' : ''}>Female</option>
+                    </select>
+                    <input type="text" name="fatherName" value="${student.fatherName}" required>
+                    <input type="text" name="motherName" value="${student.motherName}" required>
+                    <input type="text" name="schoolName" value="${student.schoolName}" required>
+                    <input type="number" name="tuitionFee" value="${student.tuitionFee}" required>
+                    <input type="text" name="mobileNo" value="${student.mobileNo}" required>
+                    <input type="date" name="admissionDate" value="${student.admissionDate}" required>
+                    <input type="text" name="currentClass" value="${student.currentClass}" required>
+                    <textarea name="address" required>${student.address}</textarea>
+                    <input type="text" name="areaPinCode" value="${student.areaPinCode}" required>
+                    <input type="text" name="city" value="${student.city}" required>
+                    <input type="text" name="state" value="${student.state}" required>
+                    <input type="file" name="photo">
+                    <button type="submit">Save Changes</button>
+                `;
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+
+        function deleteStudent(id) {
+            fetch(`/delete-student/${id}`, { method: 'POST' })
+                .then(() => {
+                    location.reload();
+                })
+                .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>

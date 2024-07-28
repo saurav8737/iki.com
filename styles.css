@@ -1,0 +1,197 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header styles */
+header {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Navigation bar */
+nav {
+    background-color: #007bff;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    background-color: #0056b3;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown .dropbtn {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Search bar */
+.search-bar {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.search-bar input[type="text"] {
+    padding: 6px;
+    font-size: 17px;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Main content styles */
+main {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+main h2 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+main p {
+    color: #6c757d;
+    margin-bottom: 40px;
+}
+
+/* Dashboard styles */
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.dashboard-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 20px;
+    padding: 20px;
+    flex: 1 1 250px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.dashboard-item:hover {
+    transform: scale(1.05);
+}
+
+.dashboard-item h2 {
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.dashboard-item p {
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.dashboard-item .button {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Different colors for dashboard buttons */
+.dashboard-item:nth-child(1) .button {
+    background-color: #007bff;
+}
+
+.dashboard-item:nth-child(2) .button {
+    background-color: #28a745;
+}
+
+.dashboard-item:nth-child(3) .button {
+    background-color: #ffc107;
+}
+
+.dashboard-item:nth-child(4) .button {
+    background-color: #dc3545;
+}
+
+.dashboard-item:nth-child(5) .button {
+    background-color: #17a2b8;
+}
+
+.dashboard-item .button:hover {
+    opacity: 0.8;
+}
+
+/* Footer styles */
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
