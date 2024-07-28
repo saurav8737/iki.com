@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Student - Impact Knowledge Institute</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Impact Knowledge Institute</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Administration</a>
+                    <div class="dropdown-content">
+                        <a href="/admin-login.html">Admin Login</a>
+                    </div>
+                </li>
+                <li><a href="/academics.html">Academics</a></li>
+                <li><a href="/gallery.html">Gallery</a></li>
+                <li><a href="/examination.html">Examination</a></li>
+                <li class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Enroll Student</h2>
+        <form action="/enroll-student" method="POST" enctype="multipart/form-data">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="firstName" required><br><br>
+            
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="lastName" required><br><br>
+            
+            <label for="dob">DOB:</label>
+            <input type="date" id="dob" name="dob" required><br><br>
+            
+            <label for="gender">Gender:</label>
+            <input type="radio" id="male" name="gender" value="Male" required>Male
+            <input type="radio" id="female" name="gender" value="Female" required>Female
+            
+            <br><br><label for="father-name">Father's Name:</label>
+            <input type="text" id="father-name" name="fatherName" required><br><br>
+            
+            <label for="mother-name">Mother's Name:</label>
+            <input type="text" id="mother-name" name="motherName" required><br><br>
+            
+            <label for="school-name">School Name:</label>
+            <input type="text" id="school-name" name="schoolName" required><br><br>
+            
+            <label for="tuition-fee">Tuition Fee:</label>
+            <input type="number" id="tuition-fee" name="tuitionFee" required><br><br>
+            
+            <label for="mobile-no">Mobile No:</label>
+            <input type="text" id="mobile-no" name="mobileNo" required><br><br>
+            
+            <label for="admission-date">Admission Date:</label>
+            <input type="date" id="admission-date" name="admissionDate" required><br><br>
+            
+            <label for="class">Class:</label>
+            <select id="class" name="class" required>
+                <option value="">Select Class</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+                <option value="VI">VI</option>
+                <option value="VII">VII</option>
+                <option value="VIII">VIII</option>
+                <option value="IX">IX</option>
+                <option value="X">X</option>
+                <option value="XI">XI</option>
+                <option value="XII">XII</option>
+            </select>
+            <br><br>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required><br><br>
+            
+            <label for="area-pin-code">Area Pin Code:</label>
+            <input type="text" id="area-pin-code" name="areaPinCode" required><br><br>
+            
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required><br><br>
+            
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required><br><br>
+            
+            <label for="photo">Passport Size Photo:</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+            
+            <button type="submit">Enroll</button>
+            <button type="reset">Reset</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Impact Knowledge Institute. All rights reserved.</p>
+    </footer>
+</body>
+</html>
